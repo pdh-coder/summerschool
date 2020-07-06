@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>地图服务</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=zRPtpQS2lAlSeGQu0tyiyfZZLEV4OZ0s"></script>
+	
+	<link rel="icon" href="images/logo.png" type="img/x-ico" />
+	
+</head>
+<body>
+    <div class="hero-content">
+        <header class="site-header">
+            <div class="top-header-bar">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
+                            <div class="header-bar-email d-flex align-items-center">
+                                <i class="fa fa-envelope"></i><a href="#">chensirong@whu.edu.cn</a>
+                            </div><!-- .header-bar-email -->
+
+                            <div class="header-bar-text lg-flex align-items-center">
+                                <p><i class="fa fa-phone"></i>18579187317 </p>
+                            </div><!-- .header-bar-text -->
+                        </div><!-- .col -->
+
+
+                    </div><!-- .row -->
+                </div><!-- .container-fluid -->
+            </div><!-- .top-header-bar -->
+
+            <div class="nav-bar">
+                <div class="container" style="width:850px;margin-right:0px;">
+					<div class="wuda_icon">
+							<a href="https://www.whu.edu.cn/" target="_blank">
+								<img src="images/wuda.png">
+							</a>
+							<a>&emsp;&emsp;&emsp;&emsp;
+							</a>
+							<a href="http://rsgis.whu.edu.cn/" target="_blank">
+								<img src="images/rs.png">
+							</a>                          
+					</div>	
+					<div class="menu_text">
+                            <ul style="display:flex;justify-content:flex-end;align-items:flex-end;">
+                                <li style="list-style: none;"><a href="index.html">首页</a></li>
+                                <li style="list-style: none;"><a href="information.html">最新通知</a></li>
+                                <li style="list-style: none;"><a href="course.html">课程安排</a></li>
+                                <li style="list-style: none;"><a href="teachers.html">专家信息</a></li>
+                                <li class="current-menu-item"style="list-style: none;"><a href="map-service.html">地图服务</a></li>
+								<li style="list-style: none;"><a href="file-download.html">资料下载</a></li>
+                            </ul>
+                    </div>					
+                </div><!-- .container -->
+            </div><!-- .nav-bar -->
+        </header><!-- .site-header -->
+
+        <div class="hero-title-wrap flex flex-column align-items-start">
+        </div><!-- .hero-content-wrap -->
+		
+    </div><!-- .hero-content -->
+	
+
+	<div id="containemap" style="display:flex;margin:20px auto;width:100%;height:650px;">
+		<div id="control-map" style=" display:flex;flex-wrap:wrap;justify-content:space-around;align-items:center;margin-top:40px;margin-left:50px;width:150px;height:650px;">
+			<a class="btn mt-4 mt-sm-0" href="#" onclick="course()">研究中心</a>
+			<a class="btn mt-4 mt-sm-0" href="#" onclick="hotel()">酒店宾馆</a>
+			<a class="btn mt-4 mt-sm-0" href="#" onclick="food()">餐厅饭店</a>
+			<a class="btn mt-4 mt-sm-0" href="#" onclick="bus()">公交站点</a>
+			<a class="btn mt-4 mt-sm-0" href="#" onclick="scene()">特色景区</a>
+		</div>
+		<div id="bdmap" style="margin-top:40px;margin-left:50px;margin-right:20px;width:1600px;height:650px;"></div>
+	</div>
+	
+
+<script type='text/javascript' src='js/jquery.js'></script>
+<script type='text/javascript' src='js/swiper.min.js'></script>
+<script type='text/javascript' src='js/masonry.pkgd.min.js'></script>
+<script type='text/javascript' src='js/jquery.collapsible.min.js'></script>
+<script type='text/javascript' src='js/custom.js'></script>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("bdmap");    // 创建Map实例
+	var point = new BMap.Point(114.367,30.533);
+	map.centerAndZoom(point, 17);
+	map.addControl(new BMap.MapTypeControl({
+		mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));	  
+	map.enableScrollWheelZoom(true); 
+	
+	var data_info = [/*4.366625,30.532317,"遥感信息工程学院"],
+					 [114.365217,30.531997,"君宜王朝"],
+					 [114.367276,30.531227,"如家酒店"],
+					 [114.369219,30.530429,"锦江之星"],
+					 [114.364651,30.533671,"二食堂"],
+					 [114.3657,30.534666,"一食堂"],
+					 [114.366981,30.536813,"星湖园食堂"],
+					 [114.367709,30.532895,"信息学部教一大楼"],*/
+					 [114.36858,30.53183,"定量遥感研究中心"],
+					];
+	for(var i=0;i<data_info.length;i++){
+		var marker = new BMap.Marker(new BMap.Point(data_info[i][0],data_info[i][1]));  // 创建标注
+		var content = data_info[i][2];
+		map.addOverlay(marker);               // 将标注添加到地图中
+		//addClickHandler(content,marker);
+		var label = new BMap.Label(content,{offset:new BMap.Size(20,-10)});
+		marker.setLabel(label);
+	}
+	function course(){
+		map.clearOverlays(); 
+		var m1 = new BMap.Marker(new BMap.Point(114.36858,30.53183));
+		//var m2 = new BMap.Marker(new BMap.Point(114.367709,30.532895));
+		map.addOverlay(m1); 
+		//map.addOverlay(m2); 
+		var label1 = new BMap.Label("定量遥感研究中心",{offset:new BMap.Size(20,-10)});
+		m1.setLabel(label1);
+		//var label2 = new BMap.Label("信息学部教一大楼",{offset:new BMap.Size(20,-10)});
+		//m2.setLabel(label2);
+	}
+	function hotel(){
+		map.clearOverlays(); 
+		var circle = new BMap.Circle(point,600,{fillColor:"blue", strokeWeight: 1 ,fillOpacity: 0.1, strokeOpacity: 0.3});
+		map.addOverlay(circle);
+		var local =  new BMap.LocalSearch(map, {renderOptions: {map: map, autoViewport: false}});  
+		local.searchNearby('宾馆',point,600);
+	}
+	function food(){
+		map.clearOverlays(); 
+		var circle = new BMap.Circle(point,600,{fillColor:"blue", strokeWeight: 1 ,fillOpacity: 0.1, strokeOpacity: 0.3});
+		map.addOverlay(circle);
+		var local =  new BMap.LocalSearch(map, {renderOptions: {map: map, autoViewport: false}});  
+		local.searchNearby('餐馆',point,600);
+	}
+	function bus(){
+		map.clearOverlays(); 
+		var circle = new BMap.Circle(point,600,{fillColor:"blue", strokeWeight: 1 ,fillOpacity: 0.1, strokeOpacity: 0.3});
+		map.addOverlay(circle);
+		var local =  new BMap.LocalSearch(map, {renderOptions: {map: map, autoViewport: false}});  
+		local.searchNearby('公交',point,600);
+	}
+	function scene(){
+		map.clearOverlays(); 
+		var circle = new BMap.Circle(point,600,{fillColor:"blue", strokeWeight: 1 ,fillOpacity: 0.1, strokeOpacity: 0.3});
+		map.addOverlay(circle);
+		var local =  new BMap.LocalSearch(map, {renderOptions: {map: map, autoViewport: false}});  
+		local.searchNearby('景区',point,600);
+	}
+</script>
+</body>
+</html>

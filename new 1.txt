@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>地图服务</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <!-- LoadStyle CSS -->
+    <link rel="stylesheet" href="css/loadstyle.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+	
+	<link rel="icon" href="images/logo.png" type="img/x-ico" />
+	
+</head>
+<body>
+   
+
+</body>
+</html>
